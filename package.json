@@ -6,11 +6,11 @@
     "module": "dist/esm/index.js",
     "types": "dist/index.d.ts",
     "files": [
-      "dist"
+        "dist"
     ],
     "scripts": {
-      "dev": "rollup -c --watch",
-      "build": "rollup -c"
+        "dev": "rollup -c --watch",
+        "build": "rollup -c"
     },
     "author": "Adam Vasik",
     "license": "MIT",
@@ -21,6 +21,7 @@
         "@types/react": "^18.2.63",
         "rollup": "^4.12.1",
         "rollup-plugin-dts": "^6.1.0",
+        "tslib": "^2.6.2",
         "typescript": "^5.3.3"
     },
     "peerDependencies": {

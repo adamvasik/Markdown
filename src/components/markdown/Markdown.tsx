@@ -5,5 +5,5 @@ interface MarkdownProps {
 }
 
 export const Markdown: React.FC<MarkdownProps> = ({markdownContent}) => {
-    return (<div></div>)
+    return (<div>{markdownContent}</div>)
 }  
