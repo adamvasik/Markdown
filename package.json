@@ -1,0 +1,22 @@
+{
+    "name": "@adamvasik/markdown",
+    "version": "0.0.1",
+    "description": "Markdown React library for converting markdown to html, writing markdown and rendering it in editor dynamically. Flexible tool designed for easy implementation for all use cases.",
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
+    "scripts": {},
+    "author": "Adam Vasik",
+    "license": "MIT",
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^25.0.7",
+        "@rollup/plugin-node-resolve": "^15.2.3",
+        "@rollup/plugin-typescript": "^11.1.6",
+        "@types/react": "^18.2.63",
+        "rollup": "^4.12.1",
+        "rollup-plugin-dts": "^6.1.0",
+        "typescript": "^5.3.3"
+    },
+    "peerDependencies": {
+        "react": "^18.2.0"
+    }
+}
