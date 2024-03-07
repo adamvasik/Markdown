@@ -1,0 +1,63 @@
+(* A document is a series of blocks *)
+document = { block } ;
+
+(* A block can be a paragraph, header, blockquote, list, code block, or horizontal rule *)
+block = paragraph | header | blockquote | list | code_block | horizontal_rule | footnode ;
+
+(* Headers *)
+header = ( "#" | "##" | "###" | "####" | "#####" | "######" ), " ", text ;
+
+(* Paragraphs are simply text separated by one or more blank lines *)
+paragraph = text, { newline, newline, text } ;
+
+(* Blockquotes *)
+blockquote = ">", { ">", text } ;
+
+(* Footnote definition *)
+footnote = footnote_link, ":", " ", text ;
+
+(* Footnote link/reference within the text *)
+footnote_link = "[^", footnote_id, "]" ;
+
+(* Footnote identifier (alphanumeric characters are commonly used) *)
+footnote_id = { letter | digit } ;
+
+(* Lists can be unordered or ordered *)
+list = unordered_list | ordered_list ;
+unordered_list = ( "*", " " | "-", " " | "+", " " ), text, { newline, ( "*", " " | "-", " " | "+", " " ), text } ;
+ordered_list = digit, ".", " ", text, { newline, digit, ".", " ", text } ;
+
+(* Code blocks *)
+code_block = "```", [language], newline, { text }, newline, "```" ;
+
+(* Horizontal rules *)
+horizontal_rule = ( "---" | "***" | "___" ) ;
+
+(* Inline elements can be within other blocks like paragraphs and headers *)
+text = { inline_element | chars } ;
+inline_element = code | emph | strong | link | image ;
+
+(* Inline code *)
+code = "`", chars, "`" ;
+
+(* Emphasis can be italics or bold, using either asterisks or underscores *)
+emph = ( "*" | "_" ), text, ( "*" | "_" ) ;
+strong = ( "**" | "__" ), text, ( "**" | "__" ) ;
+
+(* Links *)
+link = "[", text, "]", "(", url, [ " ", "'", title, "'" ], ")" ;
+
+(* Images *)
+image = "!", "[", alt_text, "]", "(", url, [ " ", "'", title, "'" ], ")" ;
+
+(* Alerts *)
+alert = ">", " ", "[", "!", text , "]" newline, ">", " ", text, { newline, newline, ">", " ", "[", "!", text , "]" newline, ">", " ", text };
+
+(* Helpers *)
+newline = "\n" | "\r\n" ;
+digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+chars = ? all visible characters excluding control characters ? ;
+language = ? any string that represents a programming language name ? ;
+url = ? any valid URL ? ;
+title = ? any string ? ;
+alt_text = ? any string ? ;
