@@ -9,6 +9,11 @@ import {
     TextMarkdownNode,
 } from "../parser/source/models";
 
+/**
+ * Creates a React component based on the type of the inline markdown node.
+ * @param {InlineElementMarkdownNode} node - The markdown node to render.
+ * @returns {JSX.Element | null} A React component corresponding to the markdown node or null if the node is not recognized.
+ */
 export const createInlineElement = (node: InlineElementMarkdownNode) => {
     if (!node) return null;
 
@@ -37,6 +42,11 @@ export const createInlineElement = (node: InlineElementMarkdownNode) => {
     }
 };
 
+/**
+ * Renders text nodes and their children, converting markdown inline elements to their corresponding React components.
+ * @param {TextMarkdownNode | null} node - The text node to render, potentially containing inline elements.
+ * @returns {JSX.Element | null} A React fragment containing the rendered text and inline elements, or null if no node is provided.
+ */
 export const createText = (node: TextMarkdownNode | null) => {
     if (!node) return null;
     return (
@@ -48,6 +58,11 @@ export const createText = (node: TextMarkdownNode | null) => {
     );
 };
 
+/**
+ * Creates a header (h1 to h6) React component based on the type of the header markdown node.
+ * @param {HeaderMarkdownNode | null} node - The header markdown node to render.
+ * @returns {JSX.Element | null} A React component for the header, or null if the node is not provided.
+ */
 export const createHeader = (node: HeaderMarkdownNode | null) => {
     if (!node) return null;
 
@@ -71,6 +86,11 @@ export const createHeader = (node: HeaderMarkdownNode | null) => {
     }
 };
 
+/**
+ * Renders a blockquote element from a markdown blockquote node.
+ * @param {BlockQuoteMarkdownNode | null} node - The blockquote markdown node to render.
+ * @returns {JSX.Element | null} A React component for the blockquote, or null if the node is not provided.
+ */
 export const createBlockQuote = (node: BlockQuoteMarkdownNode | null) => {
     if (!node) return null;
 
@@ -79,6 +99,11 @@ export const createBlockQuote = (node: BlockQuoteMarkdownNode | null) => {
     return <blockquote>{createText(text)}</blockquote>;
 };
 
+/**
+ * Renders a paragraph element from a markdown paragraph node.
+ * @param {ParagraphMarkdownNode | null} node - The paragraph markdown node to render.
+ * @returns {JSX.Element | null} A React component for the paragraph, or null if the node is not provided.
+ */
 export const createParagraph = (node: ParagraphMarkdownNode | null) => {
     if (!node) return null;
 
@@ -87,6 +112,11 @@ export const createParagraph = (node: ParagraphMarkdownNode | null) => {
     return <p>{createText(text)}</p>;
 };
 
+/**
+ * Renders a code block element from a markdown code block node.
+ * @param {CodeBlockMarkdownNode | null} node - The code block markdown node to render.
+ * @returns {JSX.Element | null} A React component for the code block, or null if the node is not provided.
+ */
 export const createCodeBlock = (node: CodeBlockMarkdownNode | null) => {
     if (!node) return null;
 
@@ -99,6 +129,11 @@ export const createCodeBlock = (node: CodeBlockMarkdownNode | null) => {
     );
 };
 
+/**
+ * Renders an ordered or unordered list element from a markdown list node.
+ * @param {ListMarkdownNode | null} node - The list markdown node to render.
+ * @returns {JSX.Element | null} A React component for the list, or null if the node is not provided.
+ */
 export const createList = (node: ListMarkdownNode | null) => {
     if (!node) return null;
 
@@ -134,6 +169,11 @@ export const createList = (node: ListMarkdownNode | null) => {
     }
 };
 
+/**
+ * Renders a line break element from a markdown newline node.
+ * @param {NewLineMarkdownNode | null} node - The newline markdown node to render.
+ * @returns {JSX.Element | null} A React component for the line break, or null if the node is not provided.
+ */
 export const createNewline = (node: NewLineMarkdownNode | null) => {
     if (!node) return null;
 

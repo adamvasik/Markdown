@@ -21,7 +21,9 @@ export type NodeType =
     | "codeblock"
     | "newline";
 
-export const typeToFunctionMap: { [K in NodeType]: (node: any) => JSX.Element | null } = {
+export const typeToFunctionMap: {
+    [K in NodeType]: (node: any) => JSX.Element | null;
+} = {
     paragraph: createParagraph,
     heading1: createHeader,
     heading2: createHeader,
