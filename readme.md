@@ -27,16 +27,25 @@ _Document is a series of blocks._
 
 `document = { block }`
 
+
+
  _A block can be a paragraph, header, blockquote, list or code block._
 
  `block = paragraph | header | blockquote | list | code_block`
+
+
 
 _Paragraphs are simply text separated by one or more blank lines._
 
 `paragraph = text, { newline, newline, text }`
 
+
+
 _Blockquotes._
+
 `blockquote = ">", { ">", text }`
+
+
 
 _Lists can be unordered or ordered._
 
@@ -47,9 +56,11 @@ _Lists can be unordered or ordered._
 `ordered_list = digit, ".", " ", text, { newline, digit, ".", " ", text }`
 
 
+
 _Code blocks._
 
 `code_block = "```", newline*, { text }, newline*, "```"`
+
 
 _Inline elements can be within other blocks like paragraphs and headers._
 
@@ -63,6 +74,7 @@ _Inline code._
 ```code = "`", chars, "`"```
 
 
+
 _Emphasis can be italics or bold, using either asterisks or underscores._
 
 `emph = ( "*" | "_" ), text, ( "*" | "_" )`
@@ -70,14 +82,17 @@ _Emphasis can be italics or bold, using either asterisks or underscores._
 `strong = ( "**" | "__" ), text, ( "**" | "__" )`
 
 
+
 _Links._
 
 `link = "[", text, "]", "(", url, ")"`
 
 
+
 _Images._
 
 `image = "!", "[", alt_text, "]", "(", url, ")"`
+
 
 
 **Happy coding!**
