@@ -40,7 +40,7 @@ export class ParseLink implements InlineElementHandler {
         }
 
         tempIndex = linkName.index;
-
+  
         if (
             TokenUtilities.compareTokenType(
                 tokens[tempIndex] || null,
@@ -54,7 +54,7 @@ export class ParseLink implements InlineElementHandler {
 
         if (
             tokens[tempIndex] === undefined ||
-            TokenUtilities.compareTokenValue(tokens[tempIndex], "(")
+            !TokenUtilities.compareTokenValue(tokens[tempIndex], "(")
         ) {
             return { node: exitText, index: tempIndex };
         }
@@ -71,7 +71,7 @@ export class ParseLink implements InlineElementHandler {
             tempIndex,
             this.matchClosingParentheses
         );
-
+        
         if (typeof urlName.content === "string") {
             return { node: exitText + urlName.content, index: urlName.index };
         }

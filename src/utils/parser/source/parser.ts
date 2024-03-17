@@ -6,9 +6,11 @@ import {
     ParseList,
     ParseNewline,
     ParseParagraph,
+    ParseSpace,
 } from "./elements/blocks";
 import { RootMarkdownNode } from "./models";
 import { Lexer, Token } from "./utilities/Lexer";
+// import { sampleA } from "../../markdownSamples";
 
 /* 
     The `Parser` class in TypeScript is designed to parse a sequence of tokens into a structured
@@ -22,6 +24,7 @@ export class Parser {
     private tokensLength: number;
     private blockParsers: ParseBlock[] = [];
     private defaultParser: ParseBlock;
+    private spaceParser;
     private index: number = 0;
 
     /**
@@ -33,6 +36,7 @@ export class Parser {
         this.tokens = this.lexer.createTokens();
         this.tokensLength = this.tokens.length;
         this.defaultParser = new ParseParagraph();
+        this.spaceParser = new ParseSpace();
         this.index = 0;
         this.initializeBlockParsers();
 
@@ -80,18 +84,28 @@ export class Parser {
         });
 
         while (this.index < this.tokensLength) {
-            const currentToken = this.tokens[this.index];
+            let currentToken = this.tokens[this.index];
 
             if (prevToken === currentToken) {
                 throw new Error(
                     `Praser stuck in an infinite loop, parsing input at [${prevToken.position.row}, ${prevToken.position.column}].`
                 );
             }
+            // handle space
+            if (ParseSpace.matchElement(currentToken!)) {
+                this.spaceParser.parse(
+                    this.tokens,
+                    this.getIndex,
+                    this.updateIndex
+                );
+
+                currentToken = this.tokens[this.index];
+            }
 
             const block = this.blockParsers.find((handler) =>
                 handler.matchElement(currentToken!)
             );
-
+         
             if (block === undefined) {
                 const result = this.defaultParser.parse({
                     tokens: this.tokens,
@@ -111,7 +125,7 @@ export class Parser {
 
                 children.push(result);
             }
-            // console.log("Message from Praser:", this.tokens[this.getIndex()], this.getIndex(), "End of message")
+
             prevToken = currentToken!;
         }
 
@@ -120,3 +134,7 @@ export class Parser {
         return rootNode;
     }
 }
+/*
+const result = new Parser(sampleA).parse();
+
+console.log(result);*/

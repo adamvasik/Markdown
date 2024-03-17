@@ -54,7 +54,7 @@ export class ParseImage implements InlineElementHandler {
 
         if (
             tokens[tempIndex] === undefined ||
-            TokenUtilities.compareTokenValue(tokens[tempIndex], "(")
+            !TokenUtilities.compareTokenValue(tokens[tempIndex], "(")
         ) {
             return { node: exitText, index: tempIndex };
         }

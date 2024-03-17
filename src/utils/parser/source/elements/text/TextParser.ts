@@ -101,19 +101,7 @@ export class TextParser {
         const inline = this.elements.find((e) => e.matchElement(currentToken));
 
         if (!inline || inline === undefined) {
-            const result = TokenUtilities.consumeTokensUntil(
-                tokens,
-                startIndex,
-                TokenUtilities.isNewline,
-                TokenUtilities.escapeAlwaysFalse
-            );
-
-            if (!result) {
-                return { node: "", index: startIndex };
-            }
-
-            const { text, index } = result;
-            return { node: text, index: index };
+            return { node: currentToken.value, index: startIndex + 1 };
         } else {
             return inline.parse({ tokens, startIndex, parent });
         }
@@ -175,6 +163,7 @@ export class TextParser {
                     tokens,
                     tempIndex
                 );
+                
                 tempIndex = index;
                 currentToken = tokens[tempIndex] || null;
                 children.push(node);
@@ -195,7 +184,7 @@ export class TextParser {
         textNode.columnEnd = currentToken?.position.column || 0;
 
         updateIndex(tempIndex + 1);
-
+        
         return textNode;
     }
 }

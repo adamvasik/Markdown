@@ -23,7 +23,7 @@ export class ParseList implements ParseBlock {
             TextParser.matchText(token.next!.next)
         ) {
             return true;
-        } else {
+        } else if(TokenUtilities.compareTokenType(token, TokenType.Digit)) {
             let currentToken = token;
             let nextToken = currentToken.next;
 
@@ -48,6 +48,7 @@ export class ParseList implements ParseBlock {
                 TextParser.matchText(nextToken!.next!.next)
             );
         }
+        return false;
     }
 
     matchSpace(token: Token): boolean {

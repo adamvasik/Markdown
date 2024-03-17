@@ -1,15 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Markdown } from "../components/markdown/Markdown";
+import { MarkdownPreview } from "../components/markdownPreview/MarkdownPreview";
 
-const meta: Meta<typeof Markdown> = {
-    component: Markdown,
+import { sampleA } from "../utils/markdownSamples/";
+
+const meta: Meta<typeof MarkdownPreview> = {
+    component: MarkdownPreview,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Markdown>
+type Story = StoryObj<typeof MarkdownPreview>;
 
 export const BasicMarkdown: Story = {
-    render: () => <Markdown markdownContent="# Hello World!" />,
-  };
+    render: () => <MarkdownPreview markdownContent={sampleA} />,
+};

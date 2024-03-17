@@ -5,8 +5,10 @@ import { InlineElementHandler, InlineParseParams } from "./inlineTypes";
 export class ParseEmphasis implements InlineElementHandler {
     matchElement(token: Token): boolean {
         return (
-            TokenUtilities.compareTokenValue(token, "*") ||
-            TokenUtilities.compareTokenValue(token, "_")
+            (TokenUtilities.compareTokenValue(token, "*") &&
+                !TokenUtilities.compareTokenValue(token.next, "*")) ||
+            (TokenUtilities.compareTokenValue(token, "_") &&
+                !TokenUtilities.compareTokenValue(token.next, "_"))
         );
     }
 
