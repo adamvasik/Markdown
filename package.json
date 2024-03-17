@@ -10,6 +10,9 @@
   ],
   "scripts": {
     "dev": "rollup -c --watch",
+    "test:unit": "jest --projects src/tests/unit",
+    "test:components": "jest --projects src/tests/components",
+    "test": "jest",
     "build": "rollup -c",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -45,5 +48,8 @@
   },
   "peerDependencies": {
     "react": "^18.2.0"
+  },
+  "dependencies": {
+    "ts-jest": "^29.1.2"
   }
 }

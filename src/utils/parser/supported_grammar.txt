@@ -2,7 +2,7 @@
 document = { block } ;
 
 (* A block can be a paragraph, header, blockquote, list, code block, or horizontal rule *)
-block = paragraph | header | blockquote | list | code_block | horizontal_rule | footnode ;
+block = paragraph | header | blockquote | list | code_block | horizontal_rule ;
 
 (* Headers *)
 header = ( "#" | "##" | "###" | "####" | "#####" | "######" ), " ", text ;
@@ -13,22 +13,13 @@ paragraph = text, { newline, newline, text } ;
 (* Blockquotes *)
 blockquote = ">", { ">", text } ;
 
-(* Footnote definition *)
-footnote = footnote_link, ":", " ", text ;
-
-(* Footnote link/reference within the text *)
-footnote_link = "[^", footnote_id, "]" ;
-
-(* Footnote identifier (alphanumeric characters are commonly used) *)
-footnote_id = { letter | digit } ;
-
 (* Lists can be unordered or ordered *)
 list = unordered_list | ordered_list ;
-unordered_list = ( "*", " " | "-", " " | "+", " " ), text, { newline, ( "*", " " | "-", " " | "+", " " ), text } ;
+unordered_list = ( "*", " " ), text, { newline, ( "*", " " ), text } ;
 ordered_list = digit, ".", " ", text, { newline, digit, ".", " ", text } ;
 
 (* Code blocks *)
-code_block = "```", [language], newline, { text }, newline, "```" ;
+code_block = "```", newline*, { text }, newline*, "```" ;
 
 (* Horizontal rules *)
 horizontal_rule = ( "---" | "***" | "___" ) ;
@@ -45,13 +36,10 @@ emph = ( "*" | "_" ), text, ( "*" | "_" ) ;
 strong = ( "**" | "__" ), text, ( "**" | "__" ) ;
 
 (* Links *)
-link = "[", text, "]", "(", url, [ " ", "'", title, "'" ], ")" ;
+link = "[", text, "]", "(", url, ")" ;
 
 (* Images *)
-image = "!", "[", alt_text, "]", "(", url, [ " ", "'", title, "'" ], ")" ;
-
-(* Alerts *)
-alert = ">", " ", "[", "!", text , "]" newline, ">", " ", text, { newline, newline, ">", " ", "[", "!", text , "]" newline, ">", " ", text };
+image = "!", "[", alt_text, "]", "(", url, ")" ;
 
 (* Helpers *)
 newline = "\n" | "\r\n" ;
