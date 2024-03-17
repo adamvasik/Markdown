@@ -12,12 +12,12 @@ npm install @adamvasik/markdown
 import { MarkdownPreview } from "@adamvasik/markdown";
 
 const App = () => {
-	return (
-		<>
-			<h1>Markdown:</h1>
-			<MarkdownPreview markdownContent={"# Hello World!"} />
-		</>
-	);
+  return (
+	<>
+	  <h1>Markdown:</h1>
+	  <MarkdownPreview markdownContent={"# Hello World!"} />
+	  </>
+  );
 }
 ```
 
