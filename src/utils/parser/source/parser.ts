@@ -120,13 +120,3 @@ export class Parser {
         return rootNode;
     }
 }
-/*
-const testString = "1. Hello World!\n2. Hello Universe!";
-const ast = new Parser(testString).parse();
-const markdownValueOne =
-    ast.children && ast.children !== undefined && ast.children?.length > 0
-        ? ast.children[0]
-        : null;
-console.log(markdownValueOne?.getStringValue());
-console.log(markdownValueOne?.getStringValue() === testString);
-*/
