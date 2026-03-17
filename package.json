@@ -53,5 +53,8 @@
   },
   "peerDependencies": {
     "react": "^18.2.0"
+  },
+  "overrides": {
+    "tar": "^7.5.11"
   }
 }

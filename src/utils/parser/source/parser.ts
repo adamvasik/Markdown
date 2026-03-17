@@ -134,7 +134,3 @@ export class Parser {
         return rootNode;
     }
 }
-/*
-const result = new Parser(sampleA).parse();
-
-console.log(result);*/
